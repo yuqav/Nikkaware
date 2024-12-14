@@ -1,7 +1,6 @@
 local function loadScriptFromURL(url)
     local success, scriptContent = pcall(game.HttpGet, game, url)
     if not success then
-        game.Players.LocalPlayer:Kick("Nikkaware does not have a script for this place")
         return
     end
 
