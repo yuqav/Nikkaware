@@ -149,3 +149,18 @@ renderTab:AddToggle({
         end
     end
 })
+
+renderTab:AddSlider({
+    Name = "Time",
+    Min = 0,
+    Max = 24,
+    Default = 14,
+    Color = Color3.fromRGB(190, 190, 190),
+    Increment = 1,
+    ValueName = "Value",
+    Callback = function(s)
+        while task.wait() do
+        game.Lighting.ClockTime = s
+        end
+    end    
+})
