@@ -3,6 +3,7 @@ local Window = NikkaLib:MakeWindow({Name = "NikkaWare", HidePremium = false, Sav
 
 local homeTab = Window:MakeTab({Name = "Home", Icon = "", PremiumOnly = false})
 local mainTab = Window:MakeTab({Name = "Main", Icon = "", PremiumOnly = false})
+local renderTab = Window:MakeTab({Name = "Render", Icon = "", PremiumOnly = false})
 
 local autoOrb = false
 
@@ -35,4 +36,19 @@ mainTab:AddToggle({
             autoOrbs()
         end
     end
+})
+
+renderTab:AddSlider({
+    Name = "Time",
+    Min = 0,
+    Max = 24,
+    Default = 14,
+    Color = Color3.fromRGB(190, 190, 190),
+    Increment = 1,
+    ValueName = "Value",
+    Callback = function(s)
+        while task.wait() do
+        game.Lighting.ClockTime = s
+        end
+    end    
 })
