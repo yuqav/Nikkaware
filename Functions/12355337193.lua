@@ -11,7 +11,7 @@ local clickKillFunc = false
 local hitBox = false
 local espBoolean = false
 
-homeTab:AddParagraph("MVSD","Last update: 14.12.24 \nMade by: yuqav")
+homeTab:AddParagraph("MVSD","Last update: 15.12.24 \nMade by: yuqav")
 
 local HB_Settings = {
     Color = Color3.fromRGB(255, 0, 0),
@@ -27,11 +27,12 @@ function addHitBoxChanges()
                 local character = plr.Character
                 if character then
                     local hrp = character:FindFirstChild("HumanoidRootPart")
-                    if hrp then
+                    if hrp then 
                         hrp.Size = Vector3.new(HB_Settings.Size, HB_Settings.Size, HB_Settings.Size)
                         hrp.CanCollide = false
                         hrp.Transparency = HB_Settings.Transparency
                         hrp.Color = HB_Settings.Color
+                        hrp.Material = Enum.Material.Neon
                     end
                 end
             end
@@ -75,6 +76,8 @@ function clickKill()
 end
 
 function espPlayers()
+    local espBoxes = {}
+
     while espBoolean do
         task.wait(0.5)
         for i, child in ipairs(workspace:GetDescendants()) do
@@ -85,14 +88,18 @@ function espPlayers()
                         esp.Adornee = child
                         esp.ZIndex = 0
                         esp.Size = Vector3.new(4, 5, 4)
-                        esp.Transparency = 0.5
-                        esp.Color3 = Color3.fromRGB(72, 61, 139)
+                        esp.Transparency = 0.45
+                        esp.Color3 = Color3.fromRGB(75, 60, 140)
                         esp.AlwaysOnTop = true
                         esp.Name = "EspBox"
+                        table.insert(espBoxes, esp)
                     end
                 end
             end
         end
+    end
+    for _, esp in ipairs(espBoxes) do
+        esp:Destroy()
     end
 end
 
@@ -121,7 +128,7 @@ mainTab:AddToggle({
 settingsTab:AddSlider({
     Name = "Hitbox size",
     Min = 2,
-    Max = 20,
+    Max = 35,
     Default = 2,
     Color = Color3.fromRGB(190,190,190),
     Increment = 1,
@@ -146,6 +153,12 @@ renderTab:AddToggle({
         espBoolean = v
         if espBoolean then
             espPlayers()
+        else
+            for _, child in ipairs(workspace:GetDescendants()) do
+                if child:FindFirstChild("EspBox") then
+                    child.EspBox:Destroy()
+                end
+            end
         end
     end
 })
