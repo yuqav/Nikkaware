@@ -4,6 +4,7 @@ local Window = NikkaLib:MakeWindow({Name = "NikkaWare", HidePremium = false, Sav
 local homeTab = Window:MakeTab({Name = "Home", Icon = "", PremiumOnly = false})
 local mainTab = Window:MakeTab({Name = "Main", Icon = "", PremiumOnly = false})
 local tpTab = Window:MakeTab({Name = "Teleport", Icon = "", PremiumOnly = false})
+local renderTab = Window:MakeTab({Name = "Render", Icon = "", PremiumOnly = false})
 
 homeTab:AddParagraph("Go Fishing","Last update: 15.12.24 \nMade by: yuqav")
 
@@ -36,4 +37,19 @@ tpTab:AddDropdown({
 			player.Character:SetPrimaryPartCFrame(CFrame.new(4692, 128, -2471))
 		end
 	end    
+})
+
+renderTab:AddSlider({
+    Name = "Time",
+    Min = 0,
+    Max = 24,
+    Default = 14,
+    Color = Color3.fromRGB(190, 190, 190),
+    Increment = 1,
+    ValueName = "Value",
+    Callback = function(s)
+        while task.wait() do
+        game.Lighting.ClockTime = s
+        end
+    end    
 })
