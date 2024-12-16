@@ -11,7 +11,7 @@ local clickKillFunc = false
 local hitBox = false
 local espBoolean = false
 
-homeTab:AddParagraph("MVSD","Last update: 15.12.24 \nMade by: yuqav")
+homeTab:AddParagraph("MVSD","Last update: 16.12.24 \nMade by: yuqav")
 
 local HB_Settings = {
     Color = Color3.fromRGB(255, 0, 0),
@@ -21,7 +21,7 @@ local HB_Settings = {
 
 function addHitBoxChanges()
     while hitBox do
-        wait(0.1)
+        wait()
         for i, plr in pairs(game.Players:GetPlayers()) do
             if plr ~= Player and plr.Team ~= Player.Team then
                 local character = plr.Character
@@ -32,7 +32,6 @@ function addHitBoxChanges()
                         hrp.CanCollide = false
                         hrp.Transparency = HB_Settings.Transparency
                         hrp.Color = HB_Settings.Color
-                        hrp.Material = Enum.Material.Neon
                     end
                 end
             end
