@@ -1,0 +1,9 @@
+Supported scripts:
+MVSD
+Legends Of Speed
+Go Fishing
+Merge For Diamonds
+Lifting Legends Simulator
+Slide and Fly Simulator
+
+Start loader: loadstring(game:HttpGet(('https://raw.githubusercontent.com/yuqav/Nikkaware/refs/heads/main/Loader.lua')))()
